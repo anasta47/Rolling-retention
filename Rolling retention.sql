@@ -11,20 +11,20 @@ WITH tab as(
     where to_char(date_joined, 'YYYY') = '2022'
   )
 SELECT cohort,
-    count(DISTINCT CASE when diff>=0 then user_id end)*100.0/ count(DISTINCT case when diff>=0 then user_id end) as "0(%)",
+    count(DISTINCT CASE when diff>=0 then user_id end)*100.0/ count(DISTINCT case when diff>=0 then user_id end) as "0 day",
     round(count(DISTINCT CASE when diff>=1 then user_id end)*100.0/ 
-count (DISTINCT CASE when diff>=0 then user_id end), 2) as "1(%)",
+count (DISTINCT CASE when diff>=0 then user_id end), 2) as "1 day",
     round(count(DISTINCT CASE when diff>=3 then user_id end)*100.0/ 
-count (DISTINCT CASE when diff>=0 then user_id end), 2) as "3(%)",
+count (DISTINCT CASE when diff>=0 then user_id end), 2) as "3 day",
     round(count(DISTINCT CASE when diff>=7 then user_id end)*100.0/ 
-count (DISTINCT CASE when diff>=0 then user_id end), 2) as "7(%)",
+count (DISTINCT CASE when diff>=0 then user_id end), 2) as "7 day",
     round(count(DISTINCT CASE when diff>=14 then user_id end)*100.0/ 
-count (DISTINCT CASE when diff>=0 then user_id end), 2) as "14(%)",
+count (DISTINCT CASE when diff>=0 then user_id end), 2) as "14 day",
     round(count(DISTINCT CASE when diff>=30 then user_id end)*100.0/ 
-count (DISTINCT CASE when diff>=0 then user_id end), 2) as "30(%)",
+count (DISTINCT CASE when diff>=0 then user_id end), 2) as "30 day",
     round(count(DISTINCT CASE when diff>=60 then user_id end)*100.0/ 
-count (DISTINCT CASE when diff>=0 then user_id end), 2) as "60(%)",
+count (DISTINCT CASE when diff>=0 then user_id end), 2) as "60 day",
     round(count(DISTINCT CASE when diff>=90 then user_id end)*100.0/ 
-count (DISTINCT CASE when diff>=0 then user_id end), 2) as "90(%)"
+count (DISTINCT CASE when diff>=0 then user_id end), 2) as "90 day"
 FROM tab t
 group by cohort
